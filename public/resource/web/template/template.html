@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <title>@title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--background-image:url('resources/images/transparent.gif');-->
+    <link rel="stylesheet" href="../resource/css/area.css">
+  <head>
+  <body id="area_content">
+    <img src="@imgData" alt="@title" />
+    
+    <script src="../resource/js/jquery-1.11.0.js"></script>
+    <script src="../resource/js/jquery.area-1.0.js"></script>
+    <script>
+      $("").area({
+        heightScale : @heightScale,
+        widthScale : @widthScale,
+        fixedScale_x : @fixedScale_x,
+        fixedScale_y : @fixedScale_y,
+        url : @url
+      });
+    </script>
+  </body>
+</html>

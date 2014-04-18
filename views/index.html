@@ -1,0 +1,871 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+	<title>Fly Fish - 便捷的原型在线制作工具</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/lib/bootstrap/css/sticky-footer-navbar.css">
+	<link rel="stylesheet" href="/lib/ztree/css/zTreeStyle/zTreeStyle.css">
+	<link rel="stylesheet" href="/lib/forkme/css/forkme.css">
+	<link rel="stylesheet" href="/sys/css/area.common.css">
+	<link rel="shortcut icon" href="/favicon.ico">
+	<style type="text/css">
+	.overFlowAuto{
+    overflow:auto;
+	}
+	/*ztree样式*/
+  .ztree li span.button.add {
+    margin-left:2px; 
+    margin-right: -1px; 
+    background-position:-144px 0; 
+    vertical-align:top; 
+    *vertical-align:middle;
+  }
+	</style>
+</head>
+<body>
+
+  <div id="wrap">
+    <!-- 头部导航 -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!--网站名称(logo)-->
+          <a class="navbar-brand" href="#">
+            <span class="glyphicon glyphicon-flash"></span>
+            <strong class="logo">飞鱼</strong>
+            <strong class="logo-small"><span class="fs15">F</span>ly<span class="fs15">F</span>ish</strong>
+          </a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!--占位-->
+            <li>
+              <a href="javascript:void(0);">&nbsp;</a>
+            </li>
+            <!--占位-->
+            <li>
+              <a href="javascript:void(0);">&nbsp;</a>
+            </li>
+            <!--占位-->
+            <li>
+              <a href="javascript:void(0);">&nbsp;</a>
+            </li>
+            <!--占位-->
+            <li>
+              <a href="javascript:void(0);">&nbsp;</a>
+            </li>
+            <!--占位-->
+            <li>
+              <a href="javascript:void(0);">&nbsp;</a>
+            </li>
+            <!--打开项目-->
+            <li>
+              <a data-toggle="dropdown" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-folder-open"></span>
+                &nbsp;
+                打开
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a onclick="javascript:openProject(1);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照1
+                  </a>
+                </li>
+                <li>
+                  <a onclick="javascript:openProject(2);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照2
+                  </a>
+                </li>
+                <li>
+                  <a onclick="javascript:openProject(3);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照3
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!--保存项目-->
+            <li>
+              <a data-toggle="dropdown" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-floppy-open"></span>
+                &nbsp;
+                保存
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a onclick="javascript:saveProject(1);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照1
+                  </a>
+                </li>
+                <li>
+                  <a onclick="javascript:saveProject(2);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照2
+                  </a>
+                </li>
+                <li>
+                  <a onclick="javascript:saveProject(3);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照3
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!--生成项目-->
+            <li>
+              <a data-toggle="dropdown" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-cloud-download"></span>
+                &nbsp;
+                生成
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a onclick="javascript:build(1);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照1
+                  </a>
+                </li>
+                <li>
+                  <a onclick="javascript:build(2);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照2
+                  </a>
+                </li>
+                <li>
+                  <a onclick="javascript:build(3);" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-file"></span>
+                    快照3
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <!--帮助-->
+            <li>
+              <a data-toggle="dropdown" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-question-sign"></span>
+                &nbsp;
+                帮助
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a id="whatMeBtn" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    FlyFish简介
+                  </a>
+                </li>
+                <li>
+                  <a id="useMeBtn" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    使用说明
+                  </a>
+                </li>
+                <li>
+                  <a id="aboutMeBtn" href="javascript:void(0);">
+                    <span class="glyphicon glyphicon-info-sign"></span>
+                    关于
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <!--用户信息-->
+            <li>
+              <a href="javascript:void(0);">
+                <span class="glyphicon glyphicon-user"></span>
+                &nbsp;
+                <strong id="showUsername">游客</strong>
+                <span id="logoutBtn" style="display:none;">[登出]</span>
+                ，欢迎使用
+              </a>
+            </li>
+            <!--登录-->
+            <li>
+              <a id="showLoginBtn" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-th-large"></span>
+                登录
+              </a>
+            </li>
+            <!--注册-->
+            <li>
+              <a id="showRegisterBtn" href="javascript:void(0);">
+                <span class="glyphicon glyphicon-star"></span>
+                注册
+              </a>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    
+    <!--中间内容-->
+    <div class="container">
+      <!--栅格,3-9分-->
+      <div id="row">
+        <div class="col-md-3 well well-sm">
+          <!--页面树-->
+          <div class="zpageTreeBackground left">
+            <ul id="pageTree" class="ztree"></ul>
+          </div>
+        </div>
+        <div class="col-md-9 overFlowAuto">
+          <!--页面图片-->
+          <input id="viewFiles" type="file" />
+          <div class="photo-column">
+            <div class="photo-container">
+              <img id="viewImg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAANSURBVBhXY/j54/t/AAm+A+iyjpf3AAAAAElFTkSuQmCC"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+	<!--底部内容-->
+	<div id="footer">
+    <div class="container">
+      <p class="text-muted">Used Nodejs|Bootstrap|zTree.Thanks for my wife LinLin.Designed by <a href="http://www.cnblogs.com/iyangyuan" target="_blank" alt="杨元的博客">YangYuan</a>.2014.</p>      
+    </div>
+  </div>
+	
+	<!-- 登录 -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="loginModalLabel">登录更精彩</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+</span>
+                <input id="l_username" type="text" class="form-control" placeholder="用户名" pattern="^[1-9a-zA-Z]{6,20}$" required>
+              </div>
+              </div>
+              <div class="col-sm-2">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                <div class="input-group">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
+</span>
+                <input id="l_password" type="password" class="form-control" placeholder="密码" pattern="^[1-9a-zA-Z]{6,20}$" required>
+              </div>
+              </div>
+              <div class="col-sm-2">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" disabled> 记住我
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-2">
+              </div>
+              <div class="col-sm-8">
+                <button id="loginBtn" type="button" class="btn btn-default btn-lg btn-block">登录</button>
+              </div>
+              </div>
+              <div class="col-sm-2">
+              </div>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	
+  <!-- 注册 -->
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="registerModalLabel">注册新用户</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal" role="form">
+            <div class="form-group">
+              <label for="r_username" class="col-sm-2 control-label">用户名</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" id="r_username" pattern="^[1-9a-zA-Z]{6,20}$" required>
+                <p class="help-block">必填项，6~20位数字、大小写字母的组合</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="r_password1" class="col-sm-2 control-label">密码</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="r_password" pattern="^[1-9a-zA-Z]{6,20}$" data-group="password" required>
+                <p class="help-block">必填项，6~20位数字、大小写字母的组合</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="r_password2" class="col-sm-2 control-label">确认密码</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" id="r_password_" pattern="^[1-9a-zA-Z]{6,20}$" data-group="password" required>
+                <p class="help-block">必填项，为了确保输入无误，请再输一次</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="r_email" class="col-sm-2 control-label">常用邮箱</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="r_email" pattern="^[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?$">
+                <p class="help-block">*非必填项，但为了保持联络，建议填写常用邮箱，谢谢！</p>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" required> 国际惯例->我同意使用协议
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <button id="registerBtn" type="button" class="btn btn-default btn-lg btn-block">注册</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	
+	<!-- 通用信息提示框 -->
+  <div class="modal fade" id="commonAlert" tabindex="-1" role="dialog" aria-labelledby="commonAlertLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="commonAlertLabel"></h4>
+        </div>
+        <div id="commonAlertBody" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default btn-block" data-dismiss="modal">关闭</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	
+	<!-- 通用确认提示框 -->
+  <div class="modal fade" id="commonConfirm" tabindex="-1" role="dialog" aria-labelledby="commonConfirmLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="commonConfirmLabel"></h4>
+        </div>
+        <div id="commonConfirmBody" class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary">确定</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	
+	<!-- 通用等待窗口 -->
+  <div class="modal fade" id="wattingModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="progress progress-striped active">
+            <div class="progress-bar"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+              <span class="sr-only"></span>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+	
+  <script src="/lib/jquery/jquery.1.7.2.min.js"></script>
+	<script src="/lib/phototagger/phototagger.jquery.js"></script>
+	<script src="/lib/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/lib/ztree/js/jquery.ztree.all-3.5.min.js"></script>
+	<script src="/lib/forkme/js/forkme-1.0.min.js"></script>
+	<script src="/sys/js/area.common.js"></script>
+	<!--HTML5访问本地图片-->
+	<script type="text/javascript">
+    var blankImg = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAANSURBVBhXY/j54/t/AAm+A+iyjpf3AAAAAElFTkSuQmCC";
+    (function () {
+        var viewFiles = document.getElementById("viewFiles");
+        var viewImg = document.getElementById("viewImg");
+        //图片加载完毕后执行
+        viewImg.onload = function(){
+           //刷新画布大小
+           refreshContainer();
+           //记录页面图片
+           currentPage.areaImg = viewImg.src;
+        }
+        function viewFile (file) {
+            //通过file.size可以取得图片大小，图片最大不能超过30kb
+            if(file.size < 30*1024*1024){
+              var reader = new FileReader();
+              //读取完毕后赋值给图片框
+              reader.onload = function( evt ){
+                viewImg.src = evt.target.result;              
+              }
+              //读取本地图片
+              reader.readAsDataURL(file);              
+            }else{
+              areaAlert("提示信息","服务器鸭梨山大(x_x)。图片大小不能超过30KB！");
+            }
+        }
+        viewFiles.addEventListener("change", function () {
+            //通过 this.files 取到 FileList ，这里只有一个
+            viewFile(this.files[0]);
+        }, false);
+    })();
+  </script>
+  <!--热区绘制-->
+	<script type="text/javascript">
+		//当前页面
+		var currentPage = {};
+		//画布上下文
+		var photoTaggerContext;
+		
+    //加载画布
+		jQuery(function( $ ){
+			$( "div.photo-container" ).photoTagger({
+			});
+			$("div.photo-container").photoTagger( "enableTagCreation" );
+			$("div.photo-container").photoTagger( "enableTagDeletion" );
+    });
+    //更新画布尺寸
+    function refreshContainer(){
+      var style ="position: relative;height:"+$("#viewImg").height()+"px;width:"+$("#viewImg").width()+"px;";
+      $("div.photo-container").attr("style",style);
+    }
+	</script>
+	<script type="text/javascript">
+		<!--
+		var setting = {
+			view: {
+				addHoverDom: addHoverDom,
+				removeHoverDom: removeHoverDom,
+				selectedMulti: false
+			},
+			edit: {
+				enable: true,
+				editNameSelectAll: true,
+				showRemoveBtn: showRemoveBtn,
+				showRenameBtn: showRenameBtn
+			},
+			data: {
+				simpleData: {
+					enable: true
+				}
+			},
+			callback: {
+				beforeDrag: beforeDrag,
+				beforeEditName: beforeEditName,
+				beforeRemove: beforeRemove,
+				beforeRename: beforeRename,
+				onRemove: onRemove,
+				onRename: onRename,
+				onClick: zTreeOnClick
+			}
+		};
+    
+    //树json结构对象
+		var zNodes =[
+			{ id:1, pId:0, name:"页面列表"}
+		];
+		var log, className = "dark";
+		function beforeDrag(treeId, treeNodes) {
+			return false;
+		}
+		function beforeEditName(treeId, treeNode) {
+			className = (className === "dark" ? "":"dark");
+			var zTree = $.fn.zTree.getZTreeObj("pageTree");
+			zTree.selectNode(treeNode);
+			return confirm("进入节点 -- " + treeNode.name + " 的编辑状态吗？");
+		}
+		function beforeRemove(treeId, treeNode) {
+			className = (className === "dark" ? "":"dark");
+			var zTree = $.fn.zTree.getZTreeObj("pageTree");
+			zTree.selectNode(treeNode);
+			return confirm("确认删除 节点 -- " + treeNode.name + " 吗？");
+		}
+		//删除节点事件
+		function onRemove(e, treeId, treeNode) {
+      //什么也不做
+		}
+		function beforeRename(treeId, treeNode, newName, isCancel) {
+			className = (className === "dark" ? "":"dark");
+			if (newName.length == 0) {
+				alert("节点名称不能为空.");
+				var zTree = $.fn.zTree.getZTreeObj("pageTree");
+				setTimeout(function(){zTree.editName(treeNode)}, 10);
+				return false;
+			}
+			return true;
+		}
+		//编辑节点名称事件
+		function onRename(e, treeId, treeNode, isCancel) {
+			//什么也不做
+		}
+		//显示删除图标
+		function showRemoveBtn(treeId, treeNode) {
+			//限制根节点无法删除
+			if(treeNode.id != 1){
+        return true;
+			}else{
+        return false;
+			}
+		}
+		//显示编辑图标
+		function showRenameBtn(treeId, treeNode) {
+			//限制根节点无法编辑
+			if(treeNode.id != 1){
+        return true;
+			}else{
+        return false;
+			}
+		}
+    //单击事件
+    function zTreeOnClick(event, treeId, treeNode){
+      //记录当前页面
+      currentPage = treeNode;
+      //更换画布图片
+      $("#viewImg").attr("src",currentPage.areaImg);
+      //更新画布大小
+      refreshContainer();
+      //清空界面热区
+      $.each(photoTaggerContext.tags,function(i,n){
+        n.remove();
+      });
+      //重绘热区
+      photoTaggerContext.loadTags();
+    }
+    
+    //添加事件
+		function addHoverDom(treeId, treeNode) {
+			var sObj = $("#" + treeNode.tId + "_span");
+			if (treeNode.editNameFlag || $("#addBtn_"+treeNode.tId).length>0) return;
+			var addStr = "<span class='button add' id='addBtn_" + treeNode.tId
+				+ "' title='add node' onfocus='this.blur();'></span>";
+			sObj.after(addStr);
+			var btn = $("#addBtn_"+treeNode.tId);
+			if (btn) btn.bind("click", function(){
+				var zTree = $.fn.zTree.getZTreeObj("pageTree");
+        //1.向当前节点下添加子节点
+        //areaImg,页面图像数据,图片base64编码
+        //areas,页面热区列表
+				zTree.addNodes(treeNode, {id:new Date().getTime(),areaImg:blankImg ,areas:[] , pId:treeNode.id, name:"新页面"});
+				//2.由于当前节点下有了子节点，则认为当前节点是一个路径(文件夹)
+				//因此需要清空当前节点的数据
+				treeNode.areaImg = blankImg;
+				treeNode.areas = [];
+				//3.模拟单击事件，刷新界面
+				sObj.click();
+				
+				return false;
+			});
+		};
+		function removeHoverDom(treeId, treeNode) {
+			$("#addBtn_"+treeNode.tId).unbind().remove();
+		};
+		function selectAll() {
+			var zTree = $.fn.zTree.getZTreeObj("pageTree");
+			zTree.setting.edit.editNameSelectAll =  $("#selectAll").attr("checked");
+		}
+		
+		$(document).ready(function(){
+			$.fn.zTree.init($("#pageTree"), setting, zNodes);
+			$("#selectAll").bind("click", selectAll);
+		});
+		//-->
+	</script>
+	<script>
+    //显示登录窗口
+    $("#showLoginBtn").click(function(){
+      $("#loginModal").modal("show");
+    });
+    //显示注册窗口
+    $("#showRegisterBtn").click(function(){
+      $("#registerModal").modal("show");
+    });
+    
+    //注册用户
+    $("#registerBtn").click(function(){
+      //获取表单元素
+      var tags = $("#registerModal").find("input,textarea");
+      //验证表单
+      if(validateForm(tags)){
+        $.ajax({
+          url:"reg",
+          type:"post",
+          data:{
+            "username":$("#r_username").val(),
+            "password":$("#r_password").val(),
+            "password_":$("#r_password_").val(),
+            "email":$("#r_email").val()
+          },
+          dataType:"json",
+          success:function(jsonObj){
+            //关闭注册窗口
+            $("#registerModal").modal("hide");
+            //显示用户信息
+            $("#showUsername").html($("#r_username").val());
+            //提示
+            areaAlert("提示信息",jsonObj.msg);
+          },
+          error:function(XMLHttpRequest, textStatus, errorThrown){
+            areaAlert("提示信息",XMLHttpRequest.status + "：" +XMLHttpRequest.responseText);
+          }
+        });
+      }
+    });
+    
+    //登录
+    $("#loginBtn").click(function(){
+      //获取表单元素
+      var tags = $("#loginModal").find("input,textarea");
+      //验证表单
+      if(validateForm(tags)){
+        $.ajax({
+          url: "login",
+          type: "post",
+          dataType: "json",
+          data: {
+            "username": $("#l_username").val(),
+            "password": $("#l_password").val()
+          },
+          success: function(jsonObj){
+            //关闭登录窗口
+            $("#loginModal").modal("hide");
+            //显示用户信息
+            $("#showUsername").html($("#l_username").val());
+            $("#logoutBtn").attr("style","display:inline;");
+            //提示
+            //areaAlert("提示信息",jsonObj.msg);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown){
+            areaAlert("提示信息",XMLHttpRequest.status + "：" +XMLHttpRequest.responseText);
+          }
+        });
+      }
+    });
+    
+    //登出
+    $("#logoutBtn").click(function(){
+      //请求登出
+      $.ajax({
+        url: "logout",
+        type: "get",
+        success: function(text){
+          //登出成功，清除用户信息
+          $("#showUsername").html("游客");
+          $("#logoutBtn").attr("style","display:none;");
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+          areaAlert("提示信息",XMLHttpRequest.status + "：" +XMLHttpRequest.responseText);
+        }
+      });
+    });
+    
+    //页面加载完毕检查是否已经登录
+    $(document).ready(function(){
+      //请求session信息
+      $.ajax({
+        url: "status",
+        type: "get",
+        dataType: "json",
+        success: function(jsonObj){
+          //判断是否登录
+          if(jsonObj.username != ""){
+            //如果用户名不为空，说明已经登录
+            //显示用户信息
+            $("#showUsername").html(jsonObj.username);
+            $("#logoutBtn").attr("style","display:inline;");
+          }
+        }
+      });
+    });
+    
+    //FlyFish简介
+    $("#whatMeBtn").click(function(){
+      areaAlertAsync("FlyFish简介","help/whatMe");
+    });
+    
+    //使用说明
+    $("#useMeBtn").click(function(){
+      areaAlertAsync("FlyFish使用说明","help/useMe");
+    });
+    
+    //关于
+    $("#aboutMeBtn").click(function(){
+      areaAlertAsync("FlyFish使用说明","help/aboutMe");
+    });
+    
+    //保存
+    function saveProject(index){
+      //获取当前项目的所有数据
+      var treeObj = $.fn.zTree.getZTreeObj("pageTree");
+      var allNodes = treeObj.transformToArray(treeObj.getNodes());
+      //过滤掉所有的children，防止数据重复
+      for(var i=0;i<allNodes.length;i++){
+        if(allNodes[i].children){
+          allNodes[i].children = [];
+        }
+      }
+      var allData = JSON.stringify(allNodes);
+      
+      //判断提交数据是否超过10M
+      if(allData.length <= 10485760){
+        //提交到服务器
+        //提交的地址为：save/索引号，通过url确定保存在哪个快照上
+        $.ajax({
+          url: "save/"+index,
+          type: "post",
+          dataType: "json",
+          data: {
+            "data": allData
+          },
+          beforeSend: function(){
+            //提交之前显示进度条
+            areaAlertWatting("show");
+          },
+          success: function(jsonObj){
+            //隐藏进度条
+            areaAlertWatting("hide");
+            //提示信息
+            areaAlert("提示信息",jsonObj.msg);
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown){
+            //隐藏进度条
+            areaAlertWatting("hide");
+            //提示信息
+            areaAlert("提示信息",XMLHttpRequest.status + "：" +XMLHttpRequest.responseText);
+          }
+        });
+      }else{
+        areaAlert("提示信息","服务器压力山大...<br>由于成本问题，保存的项目不能超过10M！<br>您可以将图片压缩来减小体积。<br>感谢您的理解与支持！");
+      }
+    }
+    
+    //打开
+    function openProject(index){
+      //请求数据
+      $.ajax({
+        url: "open/" + index,
+        type: "get",
+        beforeSend: function(){
+          //提交之前显示进度条
+          areaAlertWatting("show");
+        },
+        success: function(textObj){
+          //隐藏进度条
+          areaAlertWatting("hide");
+
+          //重新加载树
+          $.fn.zTree.init($("#pageTree"), setting, JSON.parse(textObj));
+          $("#selectAll").bind("click", selectAll);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+          //隐藏进度条
+          areaAlertWatting("hide");
+          //提示信息
+          areaAlert("提示信息",XMLHttpRequest.status + "：" +XMLHttpRequest.responseText);
+        }
+      });
+    }
+    
+    //生成
+    function build(index){
+      $.ajax({
+        url: "build/"+index,
+        type: "get",
+        dataType: "json",
+        beforeSend: function(){
+          //提交之前显示进度条
+          areaAlertWatting("show");
+        },
+        success: function(jsonObj){
+          //隐藏进度条
+          areaAlertWatting("hide");
+          
+          //下载压缩包
+          window.open(jsonObj.url);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){
+          //隐藏进度条
+          areaAlertWatting("hide");
+          //提示信息
+          areaAlert("提示信息",XMLHttpRequest.status + "：" +XMLHttpRequest.responseText);
+        }
+      });
+    }
+    
+    //让登录页面响应回车
+    $("#loginModal").keyup(function(event){
+      //判断是否为回车键
+      if(event.keyCode == 13){
+        //模拟点击登录按钮
+        $("#loginBtn").click();
+      }
+    });
+    
+    //让注册页面响应回车
+    $("#registerModal").keyup(function(event){
+      //判断是否为回车键
+      if(event.keyCode == 13){
+        //模拟点击注册按钮
+        $("#registerBtn").click();
+      }
+    });
+    
+    //渲染forkme
+    $(document).ready(function(){
+      $("body").forkme("View On Github","https://github.com/iyangyuan/flyfish");
+    });
+    
+    //判断访问者浏览器版本
+    $(document).ready(function(){
+      //获取IE6~IE9版本号
+      if(_OLD_IE){
+        //获取到了，说明就是IE6~IE9，提示不兼容
+        areaAlert("严正警告","系统检测到您的浏览器版本过低！为了确保正常使用，强烈推荐使用火狐或谷歌浏览器。");
+      }
+    });
+    
+	</script>
+</body>
+</html>

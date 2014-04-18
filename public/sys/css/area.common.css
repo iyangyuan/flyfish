@@ -1,0 +1,21 @@
+.has-error-extend{
+  border: 1px solid #A94442;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #CE8483;
+}
+.has-error-extend:focus{
+  border-color: #843534;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 6px #CE8483;
+}
+.logo{
+  font-family: "Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  font-size:22px;
+}
+.logo-small{
+  font-size:12px;
+  font-family:华文隶书,Helvetica;
+  text-shadow: 0 0 5px #333333;
+}
+.fs15{
+  font-size:15px;
+}
+
