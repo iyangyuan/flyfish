@@ -1,6 +1,12 @@
 飞鱼(FlyFish)
 =======
   
+参考链接：
+-------------
+  
+[飞鱼(FlyFish)官方网站(百度云)](http://iflyfish.duapp.com/)  
+[飞鱼(FlyFish)原型作品示例地址(开辟软件站)](http://www.kpdown.com/fastui/)  
+  
 软件环境：
 -------------
   
